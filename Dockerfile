@@ -13,5 +13,11 @@ RUN apt-get install -y mongodb-org=2.6.5 mongodb-org-server=2.6.5 mongodb-org-sh
 # MongoDB data
 RUN mkdir -p /data/db
 
+# Debug Tools
+# ref: https://docs.docker.com/examples/running_ssh_service/
+RUN apt-get -y telnet openssh-server vim
+RUN echo 'root:mongodb' | chpasswd
+RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
 EXPOSE 27017
 ENTRYPOINT ["usr/bin/mongos"]
