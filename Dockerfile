@@ -15,7 +15,7 @@ RUN mkdir -p /data/db
 
 # Debug Tools
 # ref: https://docs.docker.com/examples/running_ssh_service/
-RUN apt-get -y telnet openssh-server vim
+RUN apt-get -y install telnet openssh-server vim
 RUN echo 'root:mongodb' | chpasswd
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
